@@ -1,3 +1,7 @@
+# Info
+this project took top 10 exercises to learn react from this web site:\
+https://contactmentor.com/react-js-practice-exercises-solution/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
