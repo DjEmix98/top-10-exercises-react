@@ -53,7 +53,6 @@ function handleOnChange(valueChange, items, setAutocompleteState) {
 }
 
 function handleOnFocus(state, items, setAutocompleteState) {
-  console.log("here: ", state.valueInput.length);
   const elements =
     state.valueInput.length === 0 ? items.slice() : state.elements.slice();
   setAutocompleteState({
