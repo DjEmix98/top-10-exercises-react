@@ -3,17 +3,18 @@ import "../assets/styles/Autocomplete.css";
 import { useDetectClickOutside } from "../hooks/useDetectClickOutside";
 import { Input } from "./Input";
 /**
- * 
+ *
  * @param value for prevalorization input
  * @param label for label input
  * @param name for name attribute input
  * @param items items autocomplete
+ * @callback onChange capture event onChange value
  * @callback clickItem to handle item selected
  * @example <Autocomplete value={value} label={label} name={name} clickItems={doSomething}></Autocomplete>
  * @returns return jsx Autocomplete element
  */
 export function Autocomplete(props) {
-  const { value, label, name, items, clickItem } = props;
+  const { value, label, name, items, clickItem, onChange } = props;
   const [autocompleteState, setAutocompleteState] = useState({
     elements: items.slice(),
     showContent: false,
@@ -25,12 +26,14 @@ export function Autocomplete(props) {
     name,
     clickItem,
     items,
+    onChange,
     autocompleteState,
     setAutocompleteState,
   });
   const detectClick = useDetectClickOutside({
     children: ui,
-    handleOutside: () => handleOnClickOutside(autocompleteState, setAutocompleteState),
+    handleOutside: () =>
+      handleOnClickOutside(autocompleteState, setAutocompleteState),
   });
   return detectClick;
 }
@@ -43,9 +46,7 @@ function renderUI(props) {
         value={props.value}
         label={props.label}
         name={props.name}
-        onChange={(valueChange) =>
-          handleOnChange(valueChange, props.items, props.setAutocompleteState)
-        }
+        onChange={(valueChange) => handleOnChange(valueChange, props)}
         onFocus={() =>
           handleOnFocus(
             props.autocompleteState,
@@ -80,17 +81,22 @@ function renderUI(props) {
 
 function handleClickListItem(props) {
   props.clickItem(props.element);
-  props.setAutocompleteState({ ...props.state, showContent: false });
+  props.setAutocompleteState({
+    elements: [props.element],
+    valueInput: props.element.value,
+    showContent: false,
+  });
 }
-function handleOnChange(valueChange, items, setAutocompleteState) {
-  const newItems = items.filter((item) =>
+function handleOnChange(valueChange, props) {
+  const newItems = props.items.filter((item) =>
     item.value.toLowerCase().includes(valueChange.toLowerCase())
   );
-  setAutocompleteState({
+  props.setAutocompleteState({
     elements: newItems,
     showContent: newItems.length > 0,
     valueInput: valueChange,
   });
+  props.onChange(valueChange);
 }
 
 function handleOnFocus(state, items, setAutocompleteState) {
