@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../assets/styles/Autocomplete.css";
+import { useDetectClickOutside } from "../hooks/useDetectClickOutside";
 import { Input } from "./Input";
 
 export function Autocomplete(props) {
@@ -9,28 +10,55 @@ export function Autocomplete(props) {
     showContent: false,
     valueInput: "",
   });
+  const ui = renderUI({
+    value,
+    label,
+    name,
+    clickItem,
+    items,
+    autocompleteState,
+    setAutocompleteState,
+  });
+  const detectClick = useDetectClickOutside({
+    children: ui,
+    handleOutside: () => handleOnClickOutside(autocompleteState, setAutocompleteState),
+  });
+  return detectClick;
+}
+
+function renderUI(props) {
   return (
     <div className="autocomplete__container">
       <Input
         type={"text"}
-        value={value}
-        label={label}
-        name={name}
+        value={props.value}
+        label={props.label}
+        name={props.name}
         onChange={(valueChange) =>
-          handleOnChange(valueChange, items, setAutocompleteState)
+          handleOnChange(valueChange, props.items, props.setAutocompleteState)
         }
         onFocus={() =>
-          handleOnFocus(autocompleteState, items, setAutocompleteState)
+          handleOnFocus(
+            props.autocompleteState,
+            props.items,
+            props.setAutocompleteState
+          )
         }
-        onBlur={() => handleOnBlur(autocompleteState, setAutocompleteState)}
       ></Input>
-      {autocompleteState.elements && autocompleteState.showContent && (
+      {props.autocompleteState.elements && props.autocompleteState.showContent && (
         <ul className="autocomplete__content w-100">
-          {autocompleteState.elements.map((element) => (
+          {props.autocompleteState.elements.map((element) => (
             <li
               className="autocomplete__list text-start"
               key={element.key}
-              onClick={() => clickItem(element)}
+              onClick={() =>
+                handleClickListItem({
+                  element,
+                  state: props.autocompleteState,
+                  setAutocompleteState: props.setAutocompleteState,
+                  clickItem: props.clickItem,
+                })
+              }
             >
               {element.value}
             </li>
@@ -41,6 +69,10 @@ export function Autocomplete(props) {
   );
 }
 
+function handleClickListItem(props) {
+  props.clickItem(props.element);
+  props.setAutocompleteState({ ...props.state, showContent: false });
+}
 function handleOnChange(valueChange, items, setAutocompleteState) {
   const newItems = items.filter((item) =>
     item.value.toLowerCase().includes(valueChange.toLowerCase())
@@ -64,6 +96,6 @@ function handleOnFocus(state, items, setAutocompleteState) {
   });
 }
 
-function handleOnBlur(state, setAutocompleteState) {
+function handleOnClickOutside(state, setAutocompleteState) {
   setAutocompleteState({ ...state, showContent: false });
 }
