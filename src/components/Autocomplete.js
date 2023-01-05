@@ -2,7 +2,16 @@ import { useState } from "react";
 import "../assets/styles/Autocomplete.css";
 import { useDetectClickOutside } from "../hooks/useDetectClickOutside";
 import { Input } from "./Input";
-
+/**
+ * 
+ * @param value for prevalorization input
+ * @param label for label input
+ * @param name for name attribute input
+ * @param items items autocomplete
+ * @callback clickItem to handle item selected
+ * @example <Autocomplete value={value} label={label} name={name} clickItems={doSomething}></Autocomplete>
+ * @returns return jsx Autocomplete element
+ */
 export function Autocomplete(props) {
   const { value, label, name, items, clickItem } = props;
   const [autocompleteState, setAutocompleteState] = useState({

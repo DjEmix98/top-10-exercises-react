@@ -1,33 +1,24 @@
 import React, { useRef, useEffect } from "react";
 
-/**
- * Hook that alerts clicks outside of the passed ref
- */
-function useOutsideAlerter(ref, handleOutside) {
+function _useDetectClickOutside(ref, handleOutside) {
   useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
         handleOutside();
       }
     }
-    // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [ref, handleOutside]);
 }
 
 /**
- * Component that alerts if you click outside of it
+ * @param children jsx childrens to outside
+ * @callback handleOutside params to capture outside event
  */
 export function useDetectClickOutside(props) {
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, props.handleOutside);
+  _useDetectClickOutside(wrapperRef, props.handleOutside);
 
   return <div ref={wrapperRef}>{props.children}</div>;
 }
