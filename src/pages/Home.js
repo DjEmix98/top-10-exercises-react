@@ -10,6 +10,9 @@ export function Home() {
             <div className="col-11">
               <Link to="filter-search">top 10 - filter search</Link>
             </div>
+            <div className="col-11">
+              <Link to="counter">top 9 - Counter</Link>
+            </div>
           </div>
         </div>
       </div>
