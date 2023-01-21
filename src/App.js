@@ -1,11 +1,9 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/variables.css";
-import { Home } from "./pages/Home";
-import { FilterSearch } from "./pages/FilterSearch";
 import { Routes, Route, useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { Counter } from "./pages/Counter";
+import { routes } from "./utils/routes";
 function App() {
   const location = useLocation();
   return (
@@ -18,9 +16,14 @@ function App() {
         </div>
       )}
       <Routes>
-        <Route index element={<Home />}></Route>
-        <Route path="/filter-search" element={<FilterSearch />}></Route>
-        <Route path="/counter" element={<Counter />}></Route>
+        {routes.map((route, index) => (
+          <Route
+            key={index}
+            path={route.index ? "/" : route.routerLink}
+            index={route.index}
+            element={route.component}
+          ></Route>
+        ))}
       </Routes>
     </div>
   );
