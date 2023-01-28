@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import "../assets/styles/Home.css";
 import { routes } from "../utils/routes";
+import "../assets/styles/Home.css";
 export function Home() {
   return (
     <div>

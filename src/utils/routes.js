@@ -2,6 +2,7 @@ import { Counter } from "../pages/Counter";
 import { DisplayList } from "../pages/DisplayList";
 import { FilterSearch } from "../pages/FilterSearch";
 import { Home } from "../pages/Home";
+import { AccordionPage } from "../pages/AccordionPage";
 
 export const routes = [
   {
@@ -27,6 +28,12 @@ export const routes = [
     routerLink: "display-list",
     label: "top 8 - Display list",
     component: <DisplayList />,
+    index: false,
+  },
+  {
+    routerLink: "accordion",
+    label: "top 7 - Accordion",
+    component: <AccordionPage />,
     index: false,
   },
 ];
