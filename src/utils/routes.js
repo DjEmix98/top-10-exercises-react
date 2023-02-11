@@ -3,6 +3,7 @@ import { DisplayList } from "../pages/DisplayList";
 import { FilterSearch } from "../pages/FilterSearch";
 import { Home } from "../pages/Home";
 import { AccordionPage } from "../pages/AccordionPage";
+import { ImageSliderPage } from "../pages/ImageSliderPage";
 
 export const routes = [
   {
@@ -34,6 +35,12 @@ export const routes = [
     routerLink: "accordion",
     label: "top 7 - Accordion",
     component: <AccordionPage />,
+    index: false,
+  },
+  {
+    routerLink: "image-slider",
+    label: "top 6 - Image slider",
+    component: <ImageSliderPage/>,
     index: false,
   },
 ];
