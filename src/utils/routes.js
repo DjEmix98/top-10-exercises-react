@@ -4,6 +4,7 @@ import { FilterSearch } from "../pages/FilterSearch";
 import { Home } from "../pages/Home";
 import { AccordionPage } from "../pages/AccordionPage";
 import { ImageSliderPage } from "../pages/ImageSliderPage";
+import { ChecklistPage } from "../pages/ChecklistPage";
 
 export const routes = [
   {
@@ -41,6 +42,12 @@ export const routes = [
     routerLink: "image-slider",
     label: "top 6 - Image slider",
     component: <ImageSliderPage/>,
+    index: false,
+  },
+  {
+    routerLink: "checklist",
+    label: "top 5 - checklist",
+    component: <ChecklistPage/>,
     index: false,
   },
 ];
