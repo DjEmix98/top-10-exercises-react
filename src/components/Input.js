@@ -1,7 +1,11 @@
 export function Input({ type, onChange, value, label, name, onFocus, onBlur }) {
   return (
     <div>
-      {label && <label className="text-start w-100">{`${label}:`}</label>}
+      {label && (
+        <label
+          className={type !== "checkbox" ? "w-100 text-start" : "text-start"}
+        >{`${label}:`}</label>
+      )}
       <input
         type={type}
         value={value}
@@ -9,7 +13,7 @@ export function Input({ type, onChange, value, label, name, onFocus, onBlur }) {
         onChange={(event) => handleChange(event, onChange, type)}
         onFocus={onFocus}
         onBlur={onBlur}
-        className="w-100"
+        className={type !== "checkbox" && "w-100"}
         checked={value ?? false}
       />
     </div>
@@ -17,5 +21,7 @@ export function Input({ type, onChange, value, label, name, onFocus, onBlur }) {
 }
 
 function handleChange(event, onChange, type) {
- type === "checkbox" ? onChange(event.target.checked) : onChange(event.target.value);
+  type === "checkbox"
+    ? onChange(event.target.checked)
+    : onChange(event.target.value);
 }
