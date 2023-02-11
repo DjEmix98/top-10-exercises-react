@@ -1,5 +1,4 @@
-export function Input(props) {
-  const { type, onChange, value, label, name, onFocus, onBlur } = props;
+export function Input({ type, onChange, value, label, name, onFocus, onBlur }) {
   return (
     <div>
       {label && <label className="text-start w-100">{`${label}:`}</label>}
@@ -7,7 +6,7 @@ export function Input(props) {
         type={type}
         value={value}
         name={name}
-        onChange={(event) => handleChange(event, onChange)}
+        onChange={(event) => handleChange(event, onChange, type)}
         onFocus={onFocus}
         onBlur={onBlur}
         className="w-100"
@@ -16,6 +15,6 @@ export function Input(props) {
   );
 }
 
-function handleChange(event, onChange) {
-  onChange(event.target.value);
+function handleChange(event, onChange, type) {
+ type === "checkbox" ? onChange(event.target.checked) : onChange(event.target.value);
 }
