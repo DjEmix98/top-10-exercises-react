@@ -12,8 +12,8 @@ export function ImageSlider({ sources }) {
     (index) =>
       (index >= 0 && index < sources.length && setIndex(index)) ||
       (index >= 0 && index === sources.length && setIndex(0)) ||
-      index < 0 && setIndex(sources.length -1),
-    [indexSelected]
+      (index < 0 && setIndex(sources.length -1)),
+    [sources.length]
   );
   return (
     <div className="image-slider__container">

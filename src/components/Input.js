@@ -13,7 +13,7 @@ export function Input({ type, onChange, value, label, name, onFocus, onBlur }) {
         onChange={(event) => handleChange(event, onChange, type)}
         onFocus={onFocus}
         onBlur={onBlur}
-        className={type !== "checkbox" && "w-100"}
+        className={type !== "checkbox" ? "w-100" : ""}
         checked={value ?? false}
       />
     </div>

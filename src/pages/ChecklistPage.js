@@ -11,7 +11,6 @@ export function ChecklistPage() {
     ].sort((a, b) => a.id - b.id);
 
     setChecklist(newChecklistState);
-    console.log(item);
   };
   return (
     <>
