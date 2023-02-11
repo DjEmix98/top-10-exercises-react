@@ -16,24 +16,39 @@ export function ImageSlider({ sources }) {
         alt=""
         className="image-slider__img"
       ></img>
-      <div className="image-slider__buttons-content">
-        <button className="image-slider__buttons">
-          <FontAwesomeIcon icon={faChevronLeft}></FontAwesomeIcon>
-        </button>
-        <button className="image-slider__buttons">
-          <FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon>
-        </button>
-      </div>
-      <div className="image-slider__content-index">
-        {sources.map((_, index) => (
-          <button
-            key={index}
-            className={`image-slider__index-image ${
-              index === indexSelected && "image-slider__index-image--selected"
-            }`}
-          ></button>
-        ))}
-      </div>
+      <ButtonChooseImages></ButtonChooseImages>
+      <SelectionIndexBottom
+        sources={sources}
+        indexSelected={indexSelected}
+      ></SelectionIndexBottom>
+    </div>
+  );
+}
+
+function ButtonChooseImages() {
+  return (
+    <div className="image-slider__buttons-content">
+      <button className="image-slider__buttons">
+        <FontAwesomeIcon icon={faChevronLeft}></FontAwesomeIcon>
+      </button>
+      <button className="image-slider__buttons">
+        <FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon>
+      </button>
+    </div>
+  );
+}
+
+function SelectionIndexBottom({ sources, indexSelected }) {
+  return (
+    <div className="image-slider__content-index">
+      {sources.map((_, index) => (
+        <button
+          key={index}
+          className={`image-slider__index-image ${
+            index === indexSelected && "image-slider__index-image--selected"
+          }`}
+        ></button>
+      ))}
     </div>
   );
 }
