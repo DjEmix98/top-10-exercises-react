@@ -2,6 +2,11 @@
   height: 400px;
   width: 500px;
   object-fit: cover;
+  opacity: 0;
+}
+
+.image-slider__img--active-anim {
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
 .image-slider__container {
@@ -44,4 +49,14 @@
 .image-slider__index-image--selected {
   background-color: var(--black);
   border: 2px solid var(--white);
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

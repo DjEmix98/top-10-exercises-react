@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import {
   faChevronRight,
   faChevronLeft,
@@ -8,44 +8,67 @@ import "../assets/styles/ImageSlider.css";
 
 export function ImageSlider({ sources }) {
   const [indexSelected, setIndex] = useState(0);
-  console.log(sources[indexSelected]);
+  const indexChange = useCallback(
+    (index) => {
+      index >= 0 && index < sources.length && setIndex(index);
+    },
+    [indexSelected]
+  );
   return (
     <div className="image-slider__container">
-      <img
-        src={require(`../assets/images/${sources[indexSelected]}`)}
-        alt=""
-        className="image-slider__img"
-      ></img>
-      <ButtonChooseImages></ButtonChooseImages>
+      {sources.map((source, index) => (
+        <img
+          key={index}
+          src={`${process.env.PUBLIC_URL}/${source}`}
+          alt=""
+          className={`image-slider__img ${
+            index === indexSelected
+              ? `image-slider__img--active-anim`
+              : "d-none"
+          }`}
+        ></img>
+      ))}
+      <ButtonChooseImages
+        indexChange={indexChange}
+        actualIndex={indexSelected}
+      ></ButtonChooseImages>
       <SelectionIndexBottom
         sources={sources}
         indexSelected={indexSelected}
+        indexChange={indexChange}
       ></SelectionIndexBottom>
     </div>
   );
 }
 
-function ButtonChooseImages() {
+function ButtonChooseImages({ indexChange, actualIndex }) {
   return (
     <div className="image-slider__buttons-content">
-      <button className="image-slider__buttons">
+      <button
+        className="image-slider__buttons"
+        onClick={() => indexChange(actualIndex - 1)}
+      >
         <FontAwesomeIcon icon={faChevronLeft}></FontAwesomeIcon>
       </button>
-      <button className="image-slider__buttons">
+      <button
+        className="image-slider__buttons"
+        onClick={() => indexChange(actualIndex + 1)}
+      >
         <FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon>
       </button>
     </div>
   );
 }
 
-function SelectionIndexBottom({ sources, indexSelected }) {
+function SelectionIndexBottom({ sources, indexSelected, indexChange }) {
   return (
     <div className="image-slider__content-index">
       {sources.map((_, index) => (
         <button
           key={index}
+          onClick={() => indexChange(index)}
           className={`image-slider__index-image ${
-            index === indexSelected && "image-slider__index-image--selected"
+            index === indexSelected ? "image-slider__index-image--selected" : ""
           }`}
         ></button>
       ))}
