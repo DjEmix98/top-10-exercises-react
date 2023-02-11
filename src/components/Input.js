@@ -10,6 +10,7 @@ export function Input({ type, onChange, value, label, name, onFocus, onBlur }) {
         onFocus={onFocus}
         onBlur={onBlur}
         className="w-100"
+        checked={value ?? false}
       />
     </div>
   );
