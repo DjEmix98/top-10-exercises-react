@@ -9,7 +9,10 @@ import "../assets/styles/ImageSlider.css";
 export function ImageSlider({ sources }) {
   const [indexSelected, setIndex] = useState(0);
   const indexChange = useCallback(
-    (index) => index >= 0 && index < sources.length && setIndex(index),
+    (index) =>
+      (index >= 0 && index < sources.length && setIndex(index)) ||
+      (index >= 0 && index === sources.length && setIndex(0)) ||
+      index < 0 && setIndex(sources.length -1),
     [indexSelected]
   );
   return (
