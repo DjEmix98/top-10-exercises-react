@@ -1,0 +1,15 @@
+.login__content {
+  padding: 3rem 3rem 1.5rem 3rem;
+  border: solid 5px transparent;
+  max-width: 550px;
+  border-image: linear-gradient(to right, var(--yellow), var(--purple));
+  border-image-slice: 1;
+}
+.login__button {
+    color: var(--white);
+    font-weight: 700;
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
