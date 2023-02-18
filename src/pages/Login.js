@@ -12,7 +12,7 @@ export function Login() {
   return (
     <div className="d-flex justify-content-center mt-5">
       <div className="login__content">
-        <h2 className="mb-4">Login</h2>
+        <h2 className="mb-4 login-title">Login</h2>
         {loginKO && <p>Details do not match!</p>}
         <LoginForm onSubmit={onSubmit}></LoginForm>
       </div>

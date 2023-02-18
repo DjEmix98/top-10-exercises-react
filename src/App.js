@@ -4,14 +4,14 @@ import "./assets/styles/variables.css";
 import { Routes, Route, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { routes } from "./utils/routes";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 function App() {
   const location = useLocation();
-  const [previusPathName, setPreviusPathName] = useState(location.pathname);
+  const previusPathName = useRef(location.pathname);
   useEffect(() => {
-    handleLocationChange(location, previusPathName);
-    setPreviusPathName(location.pathname);
-  }, [previusPathName, location]);
+    handleLocationChange(location, previusPathName.current);
+    previusPathName.current = location.pathname;
+  }, [location]);
   return (
     <div className="container">
       {location.pathname !== "/" && (

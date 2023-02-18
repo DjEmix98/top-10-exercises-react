@@ -27,6 +27,10 @@
   transition: 0.4s;
 }
 
+.login-title {
+  color: var(--green-dark);
+}
+
 .login__button:hover {
   background-position: 100% 0%;
   color: var(--white);
