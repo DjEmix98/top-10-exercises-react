@@ -4,8 +4,14 @@ import "./assets/styles/variables.css";
 import { Routes, Route, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { routes } from "./utils/routes";
+import { useEffect, useState } from "react";
 function App() {
   const location = useLocation();
+  const [previusPathName, setPreviusPathName] = useState(location.pathname);
+  useEffect(() => {
+    handleLocationChange(location, previusPathName);
+    setPreviusPathName(location.pathname);
+  }, [location]);
   return (
     <div className="container">
       {location.pathname !== "/" && (
@@ -27,6 +33,17 @@ function App() {
       </Routes>
     </div>
   );
+}
+
+function handleLocationChange(location, previusPathName) {
+  const body = document.getElementsByTagName("body")[0];
+  if (location.pathname.includes("login")) {
+    body.className = `dark-mode`;
+  } else if (!previusPathName.includes("login")) {
+    body.className = ``;
+  } else {
+    body.className = `light-mode`;
+  }
 }
 
 export default App;
