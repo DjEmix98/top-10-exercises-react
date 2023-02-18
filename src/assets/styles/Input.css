@@ -1,0 +1,16 @@
+.input {
+    height: 40px;
+    border-radius: 5px;
+    background-color: var(--gray-light);
+    border: 0;
+    padding-left: 12px;
+}
+
+.input:focus {
+    border: 2px solid var(--gray-dark);
+    outline: none;
+}
+
+.input__content:focus-within {
+    color: var(--red);
+}
