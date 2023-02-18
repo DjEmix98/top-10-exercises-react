@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     handleLocationChange(location, previusPathName);
     setPreviusPathName(location.pathname);
-  }, [location]);
+  }, [previusPathName, location]);
   return (
     <div className="container">
       {location.pathname !== "/" && (
