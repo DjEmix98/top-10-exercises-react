@@ -1,6 +1,8 @@
+import "../assets/styles/Input.css";
+
 export function Input({ type, onChange, value, label, name, onFocus, onBlur }) {
   return (
-    <div>
+    <div className="input__content">
       {label && (
         <label
           className={type !== "checkbox" ? "w-100 text-start" : "text-start"}
@@ -10,11 +12,12 @@ export function Input({ type, onChange, value, label, name, onFocus, onBlur }) {
         type={type}
         value={value}
         name={name}
-        onChange={(event) => handleChange(event, onChange, type)}
+        onChange={(event) => !!onChange && handleChange(event, onChange, type)}
         onFocus={onFocus}
         onBlur={onBlur}
-        className={type !== "checkbox" ? "w-100" : ""}
+        className={type !== "checkbox" ? "w-100 input" : ""}
         checked={value ?? false}
+        autoComplete={type === "password" ? "current-password" : "of"}
       />
     </div>
   );

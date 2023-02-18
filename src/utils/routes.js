@@ -5,6 +5,7 @@ import { Home } from "../pages/Home";
 import { AccordionPage } from "../pages/AccordionPage";
 import { ImageSliderPage } from "../pages/ImageSliderPage";
 import { ChecklistPage } from "../pages/ChecklistPage";
+import { Login } from "../pages/Login";
 
 export const routes = [
   {
@@ -48,6 +49,12 @@ export const routes = [
     routerLink: "checklist",
     label: "top 5 - checklist",
     component: <ChecklistPage/>,
+    index: false,
+  },
+  {
+    routerLink: "login",
+    label: "top 4 - Login Form",
+    component: <Login/>,
     index: false,
   },
 ];
