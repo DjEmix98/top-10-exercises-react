@@ -1,19 +1,19 @@
 import { Input } from "../components/Input";
 import { useState } from "react";
-import "../assets/styles/Login.css";
 import { userData } from "../data/user-data";
 import { useNavigate } from "react-router";
+import "../assets/styles/Login.css";
 
 export function Login() {
+  const [loginKO, setLoginKO] = useState(false);
   const navigate = useNavigate();
   const onSubmit = (formState) =>
-    validateUserData(formState)
-      ? navigate("/fake-logged")
-      : console.log("error...");
+    validateUserData(formState) ? navigate("/fake-login") : setLoginKO(true);
   return (
     <div className="d-flex justify-content-center mt-5">
       <div className="login__content">
         <h2 className="mb-4">Login</h2>
+        {loginKO && <p>Details do not match!</p>}
         <LoginForm onSubmit={onSubmit}></LoginForm>
       </div>
     </div>
@@ -77,10 +77,18 @@ function LoginForm({ onSubmit }) {
 }
 
 function validateUserData(formState) {
-  return Object.keys(formState).every((key) =>
-    Object.keys(userData).some(
-      (keyUserData) =>
-        formState[key].toLowerCase() === userData[keyUserData].toLowerCase()
-    )
+  const isNotPasswordKey = (key) => key !== "password";
+  return (
+    Object.keys(formState)
+      .filter(isNotPasswordKey)
+      .every((key) =>
+        Object.keys(userData)
+          .filter(isNotPasswordKey)
+          .some(
+            (keyUserData) =>
+              formState[key].toLowerCase() ===
+              userData[keyUserData].toLowerCase()
+          )
+      ) && formState.password === userData.password
   );
 }

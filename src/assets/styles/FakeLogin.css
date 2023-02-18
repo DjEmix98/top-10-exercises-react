@@ -1,0 +1,13 @@
+.fake-login__title {
+  color: var(--green-dark);
+  font-weight: 300;
+}
+
+.fake-login__username {
+  color: var(--purple);
+  font-weight: 600;
+}
+
+.fake-login__content {
+    max-width: 600px;
+}

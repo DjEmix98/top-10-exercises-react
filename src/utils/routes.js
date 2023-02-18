@@ -6,6 +6,7 @@ import { AccordionPage } from "../pages/AccordionPage";
 import { ImageSliderPage } from "../pages/ImageSliderPage";
 import { ChecklistPage } from "../pages/ChecklistPage";
 import { Login } from "../pages/Login";
+import { FakeLogin } from "../pages/FakeLogin";
 
 export const routes = [
   {
@@ -57,4 +58,9 @@ export const routes = [
     component: <Login/>,
     index: false,
   },
+  {
+    routerLink: "fake-login",
+    component: <FakeLogin/>,
+    index: false
+  }
 ];
