@@ -3,20 +3,42 @@ import { useState } from "react";
 import { userData } from "../data/user-data";
 import { useNavigate } from "react-router";
 import "../assets/styles/Login.css";
+import { Accordion } from "../components/Accordion";
 
 export function Login() {
   const [loginKO, setLoginKO] = useState(false);
   const navigate = useNavigate();
   const onSubmit = (formState) =>
     validateUserData(formState) ? navigate("/fake-login") : setLoginKO(true);
+  const dataUser = [
+    {
+      title: "Click here to see credential user",
+      content: DataDescription(),
+      id: 1,
+    },
+  ];
   return (
-    <div className="d-flex justify-content-center mt-5">
-      <div className="login__content">
-        <h2 className="mb-4 login-title">Login</h2>
-        {loginKO && <p>Details do not match!</p>}
-        <LoginForm onSubmit={onSubmit}></LoginForm>
+    <>
+      <h2 className="text-white mt-5">N 4 - Login form </h2>
+      <Accordion items={dataUser}></Accordion>
+      <div className="d-flex justify-content-center mt-5">
+        <div className="login__content">
+          <h2 className="mb-4 login-title">Login</h2>
+          {loginKO && <p>Details do not match!</p>}
+          <LoginForm onSubmit={onSubmit}></LoginForm>
+        </div>
       </div>
-    </div>
+    </>
+  );
+}
+
+function DataDescription() {
+  return (
+    <>
+      <p>name: {userData.name}</p>
+      <p>email: {userData.email}</p>
+      <p>password: {userData.password}</p>
+    </>
   );
 }
 
