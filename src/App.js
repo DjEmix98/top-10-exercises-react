@@ -22,10 +22,10 @@ function App() {
         </div>
       )}
       <Routes>
-        {routes.map((route, index) => (
+        {routes.map((route) => (
           <Route
-            key={index}
-            path={route.index ? "/" : route.routerLink}
+            key={route.id}
+            path={route.routerLink}
             index={route.index}
             element={route.component}
           ></Route>
