@@ -7,6 +7,7 @@ import { ImageSliderPage } from "../pages/ImageSliderPage";
 import { ChecklistPage } from "../pages/ChecklistPage";
 import { Login } from "../pages/Login";
 import { FakeLogin } from "../pages/FakeLogin";
+import { PrintDataRestAPI } from "../pages/PrintDataRestAPIPage";
 
 export const routes = [
   {
@@ -71,5 +72,12 @@ export const routes = [
     component: <FakeLogin />,
     index: false,
     id: 9,
+  },
+  {
+    routerLink: "rest-api",
+    label: "top 3 - Print data from REST API",
+    component: <PrintDataRestAPI />,
+    index: false,
+    id: 10,
   },
 ];
