@@ -8,6 +8,7 @@ import { ChecklistPage } from "../pages/ChecklistPage";
 import { Login } from "../pages/Login";
 import { FakeLogin } from "../pages/FakeLogin";
 import { PrintDataRestAPI } from "../pages/PrintDataRestAPIPage";
+import { PageNotFound } from "../pages/PageNotFound";
 
 export const routes = [
   {
@@ -79,5 +80,12 @@ export const routes = [
     component: <PrintDataRestAPI />,
     index: false,
     id: 10,
+  },
+  {
+    routerLink: "*",
+    label: "",
+    component: <PageNotFound />,
+    index: false,
+    id: 11,
   },
 ];
