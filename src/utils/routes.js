@@ -10,6 +10,7 @@ import { FakeLogin } from "../pages/FakeLogin";
 import { PrintDataRestAPI } from "../pages/PrintDataRestAPIPage";
 import { PageNotFound } from "../pages/PageNotFound";
 import { RouterWithParams } from "../pages/RouterWithParams";
+import { ThemePage } from "../pages/ThemePage";
 
 export const routes = [
   {
@@ -43,7 +44,7 @@ export const routes = [
     component: <DisplayList />,
     index: false,
     id: 4,
-    linkToNavigate: "display-list"
+    linkToNavigate: "display-list",
   },
   {
     routerLink: "accordion",
@@ -51,7 +52,7 @@ export const routes = [
     component: <AccordionPage />,
     index: false,
     id: 5,
-    linkToNavigate: "accordion"
+    linkToNavigate: "accordion",
   },
   {
     routerLink: "image-slider",
@@ -59,7 +60,7 @@ export const routes = [
     component: <ImageSliderPage />,
     index: false,
     id: 6,
-    linkToNavigate: "image-slider"
+    linkToNavigate: "image-slider",
   },
   {
     routerLink: "checklist",
@@ -67,7 +68,7 @@ export const routes = [
     component: <ChecklistPage />,
     index: false,
     id: 7,
-    linkToNavigate: "checklist"
+    linkToNavigate: "checklist",
   },
   {
     routerLink: "login",
@@ -75,14 +76,14 @@ export const routes = [
     component: <Login />,
     index: false,
     id: 8,
-    linkToNavigate: "login"
+    linkToNavigate: "login",
   },
   {
     routerLink: "fake-login",
     component: <FakeLogin />,
     index: false,
     id: 9,
-    linkToNavigate: "fake-login"
+    linkToNavigate: "fake-login",
   },
   {
     routerLink: "rest-api",
@@ -90,7 +91,7 @@ export const routes = [
     component: <PrintDataRestAPI />,
     index: false,
     id: 10,
-    linkToNavigate: "rest-api"
+    linkToNavigate: "rest-api",
   },
   {
     routerLink: "*",
@@ -98,7 +99,7 @@ export const routes = [
     component: <PageNotFound />,
     index: false,
     id: 11,
-    linkToNavigate: "*"
+    linkToNavigate: "*",
   },
   {
     routerLink: "page-with-param/:param?", //<-- parametro opzionale nella rotta
@@ -106,6 +107,14 @@ export const routes = [
     component: <RouterWithParams />,
     index: false,
     id: 12,
-    linkToNavigate: "page-with-param"
+    linkToNavigate: "page-with-param",
+  },
+  {
+    routerLink: "context-api",
+    label: "top 1 - Context api in React Components",
+    component: <ThemePage />,
+    index: false,
+    id: 13,
+    linkToNavigate: "context-api",
   },
 ];

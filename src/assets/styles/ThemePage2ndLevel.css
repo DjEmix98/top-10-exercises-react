@@ -1,0 +1,5 @@
+.theme-page-2nd-level__wrapper {
+    margin-top: 10px;
+    background-color: var(--yellow);
+    border: solid 1px var(--black);
+}
